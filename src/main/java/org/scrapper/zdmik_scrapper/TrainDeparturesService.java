@@ -58,15 +58,10 @@ public class TrainDeparturesService {
             Elements rows = document.select("tbody tr.even, tbody tr.odd");
 
             return Flux.fromStream(rows.stream().map(row -> {
-                // Extracting departure time
                 Element timeElement = row.selectFirst("td .time");
                 String departureTime = timeElement != null ? timeElement.text().trim() : "";
-
-                // Extracting train number
                 Element trainElement = row.selectFirst("td.sqResMOT .train-name");
                 String trainNumber = trainElement != null ? trainElement.text().trim() : "";
-
-                // Extracting direction (concatenated stations)
                 Elements directionElements = row.select("td .bold");
                 System.out.println(directionElements);
                 String direction = directionElements.eachText().stream()

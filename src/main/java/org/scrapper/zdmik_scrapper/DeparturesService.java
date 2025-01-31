@@ -45,6 +45,9 @@ public class DeparturesService {
                 String line = row.select("td:nth-child(1)").text().trim();
                 String destination = row.select("td:nth-child(2)").text().trim();
                 String time = row.select("td:nth-child(3)").text().trim();
+                if(time.contains("min")) {
+                    
+                }
                 return new Departures(line, destination, time);
             }));
         }).subscribeOn(Schedulers.boundedElastic());
